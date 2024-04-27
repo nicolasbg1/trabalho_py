@@ -1,6 +1,7 @@
 
 print('Bem vindo a livraria do Nicolas Braga')
 
+# criando variaveis globais
 lista_livro = []
 id_global = 0
 
@@ -8,18 +9,19 @@ def cadastrar_livro(id):
     global id_global
     
     nome = input("Por favor entre com o nome do livro: ")
-    
     autor = input("Por favor entre com o autor do livro: ")
-    
     editora = input("Por favor entre com a editora do livro: ")
     
+    # criando lista de dicionario dos livros
     livro = {'id': id, 'nome': nome, 'autor': autor, 'editora': editora}
     
+    # empurrando o livro para dentro da lista global
     lista_livro.append(livro)
     
     id_global += 1
     
 def consultar_livro():
+  while True:
     print('Escolha a opção desejadada:')        
     print('1 - Consultar todos os Livros')
     print('2 - Consultar Livro por id')
@@ -29,18 +31,71 @@ def consultar_livro():
     opcao_selecionada = int(input('>>'))
     
     if opcao_selecionada == 1:
+        # consultando livros cadastrados
+        print('--' * 7)  
         for livro in lista_livro:
-            print(livro)
+           print(f"id: {livro['id']}")
+           print(f"nome: {livro['nome']}")
+           print(f"autor: {livro['autor']}")
+           print(f"editora: {livro['editora']}")
+           print('\n')
+           
+        continue
+            
     elif opcao_selecionada == 2:
-        id_consulta = int(input(''))    
+        # consulta por id
+        id_consulta = int(input('Digite o id do livro: '))
+        
+        for livro in lista_livro:
+            if livro['id'] == id_consulta:
+                print(f"id: {livro['id']}")
+                print(f"nome: {livro['nome']}")
+                print(f"autor: {livro['autor']}")
+                print(f"editora: {livro['editora']}")
+                print('\n')
+                break
+        else:
+            print('Livro não encontrado')
+            
+        continue
+        
+    elif opcao_selecionada == 3:
+        # buscando por autor
+        autor = input('Digite o autor do(s) livro(s): ')
+        
+        for livro in lista_livro:
+            if(livro['autor'] == autor):
+                print(f"id: {livro['id']}")
+                print(f"nome: {livro['nome']}")
+                print(f"autor: {livro['autor']}")
+                print(f"editora: {livro['editora']}")
+                print('\n')
+        else:
+            print('Autor não encontrado')
+        
+        continue
+                
+    else:
+        break
     
-
-
 
 
 def remover_livro():
-    print('1')    
+    while True:
+        # removendo livro por id
+        id_livro = int(input('Digite o id do livro a ser removido: '))  
     
+        for livro in lista_livro:
+            if livro['id'] == id_livro:
+                lista_livro.remove(livro)
+                print('Livro removido com sucesso !')
+                return
+                
+            else:
+                print('Id inválido')
+                continue
+            
+# ciclo do programa
 while True:
     print('--' * 24)
     print('--' * 8 , 'MENU PRINCIPAL', '--' * 8)
@@ -65,6 +120,8 @@ while True:
         print('-' * 13, 'MENU CONSULTAR LIVRO', '-' * 13)
         consultar_livro()
     elif opcao_selecionada == 3:
+        print('--' * 24)
+        print('-' * 13, 'MENU REMOVER LIVRO', '-' * 13)
         remover_livro()
     else:
         print('Encerrando programa . . .')
