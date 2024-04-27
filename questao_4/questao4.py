@@ -8,11 +8,13 @@ id_global = 0
 def cadastrar_livro(id):
     global id_global
     
+    id_global = id + 1
+    
+    print('Id Livro: ', id_global)
     nome = input("Por favor entre com o nome do livro: ")
     autor = input("Por favor entre com o autor do livro: ")
     editora = input("Por favor entre com a editora do livro: ")
     
-    id_global = id + 1
     # criando lista de dicionario dos livros
     livro = {'id': id_global, 'nome': nome, 'autor': autor, 'editora': editora}
     
@@ -90,15 +92,17 @@ def consultar_livro():
 def remover_livro():
     while True:
         # removendo livro por id
-        id_livro = int(input('Digite o id do livro a ser removido: '))  
+        id_livro = int(input('Digite o id do livro a ser removido: '))
+        id_not_found = True  
     
         for livro in lista_livro:
             if livro['id'] == id_livro:
                 lista_livro.remove(livro)
                 print('Livro removido com sucesso !')
+                id_not_found = False
                 return
                 
-            else:
+            elif id_not_found == True:
                 print('Id inválido')
                 continue
             
