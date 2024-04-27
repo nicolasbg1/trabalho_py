@@ -12,14 +12,13 @@ def cadastrar_livro(id):
     autor = input("Por favor entre com o autor do livro: ")
     editora = input("Por favor entre com a editora do livro: ")
     
+    id_global = id + 1
     # criando lista de dicionario dos livros
-    livro = {'id': id, 'nome': nome, 'autor': autor, 'editora': editora}
+    livro = {'id': id_global, 'nome': nome, 'autor': autor, 'editora': editora}
     
     # empurrando o livro para dentro da lista global
     lista_livro.append(livro)
-    
-    id_global += 1
-    
+        
 def consultar_livro():
   while True:
     print('Escolha a opção desejadada:')        
@@ -45,6 +44,7 @@ def consultar_livro():
     elif opcao_selecionada == 2:
         # consulta por id
         id_consulta = int(input('Digite o id do livro: '))
+        livro_not_found = True
         
         for livro in lista_livro:
             if livro['id'] == id_consulta:
@@ -53,15 +53,20 @@ def consultar_livro():
                 print(f"autor: {livro['autor']}")
                 print(f"editora: {livro['editora']}")
                 print('\n')
+                livro_not_found = False
                 break
-        else:
+            
+        if livro_not_found == True:
             print('Livro não encontrado')
+            
+            
             
         continue
         
     elif opcao_selecionada == 3:
         # buscando por autor
         autor = input('Digite o autor do(s) livro(s): ')
+        autor_not_found = True
         
         for livro in lista_livro:
             if(livro['autor'] == autor):
@@ -70,9 +75,11 @@ def consultar_livro():
                 print(f"autor: {livro['autor']}")
                 print(f"editora: {livro['editora']}")
                 print('\n')
-        else:
+                autor_not_found = False
+                
+        if autor_not_found == True:
             print('Autor não encontrado')
-        
+
         continue
                 
     else:
