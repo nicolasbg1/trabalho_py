@@ -1,0 +1,13 @@
+------------------------------------------------
+------------- MENU REMOVER LIVRO -------------
+Digite o id do livro a ser removido: 2
+Id inválido
+Livro removido com sucesso !
+------------------------------------------------
+---------------- MENU PRINCIPAL ----------------
+Escolha a opção desejada:
+1 - Cadastrar livro
+2 - Consultar Livro(s)
+3 - Remover Livro
+4 - Sair
+>>2

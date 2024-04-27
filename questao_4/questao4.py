@@ -102,10 +102,10 @@ def remover_livro():
                 id_not_found = False
                 return
                 
-            elif id_not_found == True:
-                print('Id inválido')
-                continue
-            
+        if id_not_found == True:
+            print('Id inválido')
+            continue
+
 # ciclo do programa
 while True:
     print('--' * 24)
